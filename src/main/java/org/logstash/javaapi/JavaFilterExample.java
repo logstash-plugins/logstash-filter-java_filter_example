@@ -16,19 +16,11 @@ public class JavaFilterExample implements Filter {
     public static final PluginConfigSpec<String> SOURCE_CONFIG =
             Configuration.stringSetting("source", "message");
 
-    private String sourceField = SOURCE_CONFIG.defaultValue();
+    private String sourceField;
 
     public JavaFilterExample(Configuration config, Context context) {
         // constructors should validate configuration options
-        if (config.contains(SOURCE_CONFIG)) {
-            Object o = config.get(SOURCE_CONFIG);
-            if (o instanceof String) {
-                this.sourceField = (String)o;
-            } else {
-                throw new IllegalStateException(
-                        String.format("Invalid value '%s' for config option %s", o, SOURCE_CONFIG));
-            }
-        }
+        this.sourceField = config.get(SOURCE_CONFIG);
     }
 
     @Override
