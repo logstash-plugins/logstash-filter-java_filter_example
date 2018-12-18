@@ -2,8 +2,8 @@ package org.logstash.javaapi;
 
 import co.elastic.logstash.api.Configuration;
 import co.elastic.logstash.api.Context;
-import co.elastic.logstash.api.Filter;
 import co.elastic.logstash.api.PluginConfigSpec;
+import co.elastic.logstash.api.v0.Filter;
 import org.apache.commons.lang3.StringUtils;
 import org.logstash.Event;
 
