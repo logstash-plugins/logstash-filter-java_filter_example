@@ -2,6 +2,7 @@ package org.logstash.javaapi;
 
 import co.elastic.logstash.api.Configuration;
 import co.elastic.logstash.api.Context;
+import co.elastic.logstash.api.LogstashPlugin;
 import co.elastic.logstash.api.PluginConfigSpec;
 import co.elastic.logstash.api.v0.Filter;
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +12,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 // class name must match plugin name
+@LogstashPlugin(name = "java_filter_example")
 public class JavaFilterExample implements Filter {
 
     public static final PluginConfigSpec<String> SOURCE_CONFIG =
