@@ -71,12 +71,12 @@ Let's step through and examine each part of that class.
 public class JavaFilterExample implements Filter {
 ```
 There are two things to note about the class declaration:
-1. All Java plugins must be annotated with the `@LogstashPlugin` annotation. Additionally:
+* All Java plugins must be annotated with the `@LogstashPlugin` annotation. Additionally:
   * The `name` property of the annotation must be supplied and defines the name of the plugin as it will be used
    in the Logstash pipeline definition. For example, this filter would be referenced in the filter section of the
    Logstash pipeline defintion as `filter { java_filter_example => { .... } }`
   * The value of the `name` property must match the name of the class excluding casing and underscores.
-1. The class must implement the `co.elastic.logstash.api.v0.Filter` interface.
+* The class must implement the `co.elastic.logstash.api.v0.Filter` interface.
 
 #### Plugin settings
 
