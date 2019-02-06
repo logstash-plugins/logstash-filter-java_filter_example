@@ -24,15 +24,48 @@ occur because the implementation of classes outside of the API package may chang
 To develop a new Java filter for Logstash, you write a new Java class that conforms to the Logstash Java Filter
 API, package it, and install it with the `logstash-plugin` utility. We'll go through each of those steps in this guide.
 
-### Coding the plugin
+### Setting up your environment
 
 It is recommended that you start by copying the 
-[example filter plugin](https://github.com/logstash-plugins/logstash-filter-java_filter_example). The example filter
+[example filter plugin](https://github.com/logstash-plugins/logstash-filter-java_filter_example). The plugin API
+is currently part of the Logstash codebase so you must have a local copy of that available. One way in which you can 
+obtain a copy of the Logstash codebase is with the following `git` command:
+
+```
+git clone --branch <branch_name> --single-branch https://github.com/elastic/logstash.git <target_folder>
+```
+
+The `branch_name` should correspond to the version of Logstash containing the desired revision of the Java plugin
+API. The experimental version of the Java plugin API is available in the `6.6` branch of the Logstash codebase.
+You may specify the desired `target_folder` for your local copy of the Logstash codebase. If you do not specify 
+`target_folder`, it will default to a new folder called `logstash` under your current folder. 
+
+Once you have obtained a copy of the appropriate revision of the Logstash codebase, you need to compile it to
+generate the .jar file containing the Java plugin API. From the root directory of your Logstash codebase ($LS_HOME),
+you can compile it with `./gradlew assemble` (or `gradlew.bat assemble` if you're running on Windows). This should
+produce the `$LS_HOME/logstash-core/build/libs/logstash-core-x.y.z.jar` where `x`, `y`, and `z` refer to the 
+version of Logstash.
+
+Once you have successfully compiled Logstash, you need to tell your Java plugin where to find the
+`logstash-core-x.y.z.jar` file. You do this by creating a new file named `gradle.properties` in the root folder
+of your plugin project. That file should have a single line:
+
+```
+LOGSTASH_CORE_PATH=<target_folder>/logstash-core
+```
+
+where `target_folder` is the root folder of your local copy of the Logstash codebase.
+
+### Coding the plugin
+
+The example filter
 plugin allows one to configure a field in each event that will be reversed. For example, if the filter were 
 configured to reverse the `day_of_week` field, an event with `day_of_week: "Monday"` would be transformed to
 `day_of_week: "yadnoM"`. Let's look at the main class in that example filter:
  
 ```java
+import org.apache.commons.lang3.StringUtils;
+
 @LogstashPlugin(name = "java_filter_example")
 public class JavaFilterExample implements Filter {
 
