@@ -28,7 +28,7 @@ Add plugin description here
 // Sample link: <<plugins-{type}s-{plugin}-setting_name>>
 
 [id="plugins-{type}s-{plugin}-options"]
-==== Example Codec Configuration Options
+==== Example Filter Configuration Options
 
 [cols="<,<,<",options="header",]
 |=======================================================================
