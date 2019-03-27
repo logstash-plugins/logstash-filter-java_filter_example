@@ -2,11 +2,12 @@ package org.logstash.javaapi;
 
 import co.elastic.logstash.api.Configuration;
 import co.elastic.logstash.api.Context;
+import co.elastic.logstash.api.Event;
+import co.elastic.logstash.api.Filter;
+import co.elastic.logstash.api.FilterMatchListener;
 import co.elastic.logstash.api.LogstashPlugin;
 import co.elastic.logstash.api.PluginConfigSpec;
-import co.elastic.logstash.api.v0.Filter;
 import org.apache.commons.lang3.StringUtils;
-import org.logstash.Event;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -16,21 +17,24 @@ import java.util.Collections;
 public class JavaFilterExample implements Filter {
 
     public static final PluginConfigSpec<String> SOURCE_CONFIG =
-            Configuration.stringSetting("source", "message");
+            PluginConfigSpec.stringSetting("source", "message");
 
+    private String id;
     private String sourceField;
 
-    public JavaFilterExample(Configuration config, Context context) {
+    public JavaFilterExample(String id, Configuration config, Context context) {
         // constructors should validate configuration options
+        this.id = id;
         this.sourceField = config.get(SOURCE_CONFIG);
     }
 
     @Override
-    public Collection<Event> filter(Collection<Event> events) {
+    public Collection<Event> filter(Collection<Event> events, FilterMatchListener matchListener) {
         for (Event e : events) {
             Object f = e.getField(sourceField);
             if (f instanceof String) {
                 e.setField(sourceField, StringUtils.reverse((String)f));
+                matchListener.filterMatched(e);
             }
         }
         return events;
@@ -40,5 +44,10 @@ public class JavaFilterExample implements Filter {
     public Collection<PluginConfigSpec<?>> configSchema() {
         // should return a list of all configuration options for this plugin
         return Collections.singletonList(SOURCE_CONFIG);
+    }
+
+    @Override
+    public String getId() {
+        return this.id;
     }
 }
