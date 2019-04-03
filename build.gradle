@@ -77,7 +77,7 @@ tasks.withType(JavaCompile) {
 task vendor(dependsOn: shadowJar) << {
     String vendorPathPrefix = "vendor/jar-dependencies"
     String projectGroupPath = project.group.replaceAll('\\.', '/')
-    File projectJarFile = file("${vendorPathPrefix}/${projectGroupPath}/${project.name}/${project.version}/${project.name}-${project.version}.jar")
+    File projectJarFile = file("${vendorPathPrefix}/${projectGroupPath}/${pluginFullName}/${project.version}/${pluginFullName}-${project.version}.jar")
     projectJarFile.mkdirs()
     Files.copy(file("$buildDir/libs/${project.name}-${project.version}.jar").toPath(), projectJarFile.toPath(), REPLACE_EXISTING)
 }
