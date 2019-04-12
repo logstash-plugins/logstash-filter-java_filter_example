@@ -1,3 +1,7 @@
+## 1.0.0
+- Updated for GA release of native support for Java plugins. Includes:
+  - Improved Gradle task wrappers
+  - Removal of auto-generated Ruby source files 
 
 ## 0.2.0
 - Updated for beta version of native support for Java plugins. Includes:
