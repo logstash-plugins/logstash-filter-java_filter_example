@@ -18,4 +18,3 @@ out/
 Gemfile*
 settings.gradle
 gradle.properties
-lib/logstash-filter-java_filter_example_jars.rb
