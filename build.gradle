@@ -7,7 +7,7 @@ apply from: LOGSTASH_CORE_PATH + "/../rubyUtils.gradle"
 // ===========================================================================
 // plugin info
 // ===========================================================================
-group                      'org.logstash.javaapi' // must match the package of the main plugin class
+group                      'org.logstashplugins' // must match the package of the main plugin class
 version                    "${file("VERSION").text.trim()}" // read from required VERSION file
 description                = "Example Java filter implementation"
 pluginInfo.licenses        = ['Apache-2.0'] // list of SPDX license IDs
@@ -55,6 +55,7 @@ dependencies {
     compile fileTree(dir: LOGSTASH_CORE_PATH, include: "build/libs/logstash-core-?.?.?.jar")
 
     testCompile 'junit:junit:4.12'
+    testCompile 'org.jruby:jruby-complete:9.2.7.0'
 }
 
 clean {
