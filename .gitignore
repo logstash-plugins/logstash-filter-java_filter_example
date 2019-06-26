@@ -15,7 +15,6 @@ out/
 *.iws
 *.gem
 *.gemspec
-Gemfile.lock
+Gemfile*
 settings.gradle
 gradle.properties
-lib/logstash-filter-java_filter_example_jars.rb
