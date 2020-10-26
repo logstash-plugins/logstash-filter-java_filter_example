@@ -1,3 +1,6 @@
+## 1.0.2
+- Use task avoidance API to remove build warnings
+
 ## 1.0.1
 - Fix gradle incompatibility issue with Logstash 7.9 and above.
 
