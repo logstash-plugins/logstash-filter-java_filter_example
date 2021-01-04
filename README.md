@@ -1,6 +1,6 @@
 # Logstash Java Plugin
 
-[![Travis Build Status](https://travis-ci.org/logstash-plugins/logstash-filter-java_filter_example.svg)](https://travis-ci.org/logstash-plugins/logstash-filter-java_filter_example)
+[![Travis Build Status](https://travis-ci.com/logstash-plugins/logstash-filter-java_filter_example.svg)](https://travis-ci.com/logstash-plugins/logstash-filter-java_filter_example)
 
 This is a Java plugin for [Logstash](https://github.com/elastic/logstash).
 
