@@ -57,13 +57,13 @@ shadowJar {
 }
 
 dependencies {
-    implementation 'org.apache.commons:commons-lang3:3.7'
-    compileOnly 'org.apache.logging.log4j:log4j-api:2.17.0' // provided by Logstash
-    compileOnly 'org.apache.logging.log4j:log4j-core:2.17.0' // provided by Logstash
-    implementation fileTree(dir: LOGSTASH_CORE_PATH, include: "build/libs/logstash-core*.jar")
+    implementation 'org.apache.commons:commons-lang3:3.18.0'
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.0'
+    implementation fileTree(dir: LOGSTASH_CORE_PATH, include: "**/logstash-core.jar")
 
     testImplementation 'junit:junit:4.12'
     testImplementation "org.jruby:jruby-complete:${gradle.ext.versions.jruby.version}"
+    testImplementation 'org.apache.logging.log4j:log4j-core:2.17.0'
 }
 
 clean {
